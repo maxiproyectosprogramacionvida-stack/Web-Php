@@ -12,18 +12,20 @@ include("includes/nav.php");
     <h2>Catálogo Público de Autopartes</h2>
     <p>Bienvenido a nuestra tienda. Estos son algunos de nuestros productos disponibles:</p>
 
-    <div class="productos-grid-publico">
+    <div class="productos-grid">
         <?php while ($prod = mysqli_fetch_assoc($resultado)): ?>
-            <div class="producto-card-publico">
+            <div class="producto-card">
                 <img 
                     src="<?= htmlspecialchars($prod['imagen']); ?>" 
                     alt="<?= htmlspecialchars($prod['nombre']); ?>" 
-                    class="producto-imagen-publico" 
+                    class="producto-imagen" 
                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500';"
                 >
-                <h3><?= htmlspecialchars($prod['nombre']); ?></h3>
-                <p class="categoria"><?= htmlspecialchars($prod['categoria']); ?></p>
-                <p class="precio">$<?= number_format($prod['precio'], 2, ',', '.'); ?></p>
+                <div class="producto-info">
+                    <h3><?= htmlspecialchars($prod['nombre']); ?></h3>
+                    <p><strong>Categoría:</strong> <?= htmlspecialchars($prod['categoria']); ?></p>
+                    <p><strong>Precio:</strong> $<?= number_format($prod['precio'], 2, ',', '.'); ?></p>
+                </div>
             </div>
         <?php endwhile; ?>
     </div>
