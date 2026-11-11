@@ -50,14 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             );
 
             if (mysqli_stmt_execute($stmt)) {
+                $_SESSION['mensaje'] = "Repuesto agregado correctamente.";
                 mysqli_stmt_close($stmt);
                 header("Location: admin.php");
                 exit();
             } else {
                 $error = "Error al guardar el producto en la base de datos.";
+                mysqli_stmt_close($stmt);
             }
-
-            mysqli_stmt_close($stmt);
         } else {
             $error = "No se pudo preparar la consulta.";
         }

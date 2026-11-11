@@ -47,6 +47,13 @@ include("../includes/nav.php");
         Gestiona el catálogo de repuestos y accesorios.
     </p>
 
+    <?php if (isset($_SESSION['mensaje'])): ?>
+        <div class="alert success">
+            <?= htmlspecialchars($_SESSION['mensaje']); ?>
+        </div>
+        <?php unset($_SESSION['mensaje']); ?>
+    <?php endif; ?>
+
     <form method="GET" action="admin.php" class="search-form">
 
         <input
@@ -84,7 +91,7 @@ include("../includes/nav.php");
                         src="<?= htmlspecialchars($fila['imagen']); ?>"
                         alt="<?= htmlspecialchars($fila['nombre']); ?>"
                         class="producto-imagen"
-                        onerror="this.src='https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500';"
+                        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=500';"
                     >
 
                     <div class="producto-info">
@@ -111,19 +118,27 @@ include("../includes/nav.php");
                         <div class="producto-acciones">
 
                             <a
-                                href="editar.php?id=<?= $fila['id']; ?>"
+                                href="editar.php?id=<?= (int) $fila['id']; ?>"
                                 class="btn-edit"
                             >
                                 Editar
                             </a>
 
-                            <a
-                                href="eliminar.php?id=<?= $fila['id']; ?>"
-                                class="btn-delete"
-                                onclick="return confirm('¿Seguro que deseas eliminar este producto?');"
+                            <form
+                                action="eliminar.php"
+                                method="POST"
+                                onsubmit="return confirm('¿Seguro que deseas eliminar este producto?');"
                             >
-                                Eliminar
-                            </a>
+                                <input
+                                    type="hidden"
+                                    name="id"
+                                    value="<?= (int) $fila['id']; ?>"
+                                >
+
+                                <button type="submit" class="btn-delete">
+                                    Eliminar
+                                </button>
+                            </form>
 
                         </div>
 
