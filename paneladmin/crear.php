@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 require_once "../includes/conexion.php";
@@ -67,6 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include("../includes/header.php");
 include("../includes/nav.php");
 ?>
+
+<link rel="stylesheet" href="../styles/index.css">
 
 <main class="container">
     <h2>Cargar Nuevo Repuesto</h2>

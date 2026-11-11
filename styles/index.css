@@ -26,6 +26,7 @@ body {
 .main-nav ul {
     list-style: none;
     display: flex;
+    justify-content: flex-end;
     gap: 15px;
 }
 

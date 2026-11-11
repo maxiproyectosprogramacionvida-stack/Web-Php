@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 require_once "../includes/conexion.php";
@@ -38,6 +37,8 @@ if ($busqueda !== '') {
 include("../includes/header.php");
 include("../includes/nav.php");
 ?>
+
+<link rel="stylesheet" href="../styles/index.css">
 
 <main class="container">
 
